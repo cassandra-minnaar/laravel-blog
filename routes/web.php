@@ -2,10 +2,14 @@
 
 use App\Models\Category;
 use App\Models\Post;
+use Illuminate\Foundation\Bootstrap\RegisterFacades;
+use Illuminate\Log\Logger;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use League\CommonMark\Extension\FrontMatter\Data\SymfonyYamlFrontMatterParser;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
+use Symfony\Component\HttpKernel\Log\Logger as LogLogger;
 use Symfony\Component\Yaml\Yaml;
 
 /*
@@ -21,7 +25,7 @@ use Symfony\Component\Yaml\Yaml;
 
 Route::get('/', function () {
     return view('posts',[
-        'posts' => Post::all()
+        'posts' => Post::with('category')->get()
 
     ]);
 });
