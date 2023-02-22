@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('category_id');
+            $table->string('slug')->unique();
             $table->string('title');
             $table->text('excerpt');
             $table->text('body');
@@ -22,7 +24,6 @@ return new class extends Migration
             $table->timestamp('published_at')->nullable();
         });
     }
-
     /**
      * Reverse the migrations.
      *
