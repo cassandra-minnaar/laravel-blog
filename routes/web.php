@@ -23,6 +23,10 @@ use Symfony\Component\Yaml\Yaml;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 
 Route::get('/', function () {
     return view('posts', [
@@ -37,14 +41,14 @@ Route::get('posts/{post:slug}', function (Post $post) {// Post::where('slug', $p
     ]);
 });
 
-Route::get("categories/{category:slug}", function(Category $category) {
-    return view("posts", [
-        "posts"=>$category->posts
-    ]);
-});
+// Route::get("categories/{category:slug}", function(Category $category) {
+//     return view("posts", [
+//         "posts"=>$category->posts
+//     ]);
+// });
 
-Route::get('authors/{author:username}', function(User $author){
-    return view('posts', [
-        'posts' => $author->posts
-    ]);
-});
+// Route::get('authors/{author:username}', function(User $author){
+//     return view('posts', [
+//         'posts' => $author->posts
+//     ]);
+// });
