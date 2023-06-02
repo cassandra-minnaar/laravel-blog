@@ -16,10 +16,18 @@ class Post extends Model
 
     public function getRouteKeyName()
     {
-        return 'slug'; 
+        return 'slug';
     }
 
     protected $with = ['category', 'author'];
+
+    public function  scopeFilter($query){
+        if ($filters['search'] ?? false) {
+            $query
+                ->where('title', 'like', '%' . request('search') . '%')
+                ->orWhere('body', 'like', '%' . request('search') . '%');
+        }
+    }
 
     public function category()
     {
@@ -31,5 +39,5 @@ class Post extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-    
+
 }
