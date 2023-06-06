@@ -8,8 +8,7 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function index()
-    {
+    public function index(){
         return view('posts', [
             'posts' => Post::latest()->filter(request(['search']))->get(),
             'categories' => Category::all()
@@ -21,5 +20,4 @@ class PostController extends Controller
             'post' => $post
         ]);
     }
-//.
 }
